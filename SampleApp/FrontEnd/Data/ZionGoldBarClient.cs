@@ -39,7 +39,7 @@ public class ZionGoldBarClient
         }
     }
 
-    public async Task GenerateCertificateAsync(string issuedTo, decimal value)
+    public async Task<string> GenerateCertificateAsync(string issuedTo, decimal value)
     {
         var response = await _httpClient.PostAsync(
             $"certificate/generate?issuedTo={Uri.EscapeDataString(issuedTo)}&value={value}",
@@ -47,11 +47,8 @@ public class ZionGoldBarClient
         );
         response.EnsureSuccessStatusCode();
         
-        // Download the PDF
-        var bytes = await response.Content.ReadAsByteArrayAsync();
-        // Note: In a real browser scenario, this would trigger a download
-        // For now, we just log success
-        Console.WriteLine($"Certificate generated: {bytes.Length} bytes");
+        // Return the URL for direct download
+        return $"{_httpClient.BaseAddress}certificate/generate?issuedTo={Uri.EscapeDataString(issuedTo)}&value={value}";
     }
 
     public async Task<EnftCodexEntry?> MintEnftAsync(string layer, string memorialSite, string ancestralLineage)

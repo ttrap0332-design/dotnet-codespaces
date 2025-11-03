@@ -131,8 +131,8 @@ else
 
         try
         {
-            await ZionClient.GenerateCertificateAsync(certificateRecipient, certificateValue);
-            certificateMessage = $"Certificate generated for {certificateRecipient}! Check your browser downloads.";
+            var pdfUrl = await ZionClient.GenerateCertificateAsync(certificateRecipient, certificateValue);
+            certificateMessage = $"Certificate generated for {certificateRecipient}! Click here to download: {pdfUrl}";
         }
         catch (Exception ex)
         {
