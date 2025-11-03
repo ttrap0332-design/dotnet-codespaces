@@ -74,12 +74,14 @@ public class MetaVaultService
             _energyTreasury.StakerBalances[address] = 0m;
         }
 
+        if (!_energyTreasury.StakerBalances.ContainsKey(address))
+        {
+            _energyTreasury.StakerBalances[address] = 0m;
+        }
+        
         _energyTreasury.StakerBalances[address] += amount;
-        var newTreasury = _energyTreasury with 
-        { 
-            TotalStaked = _energyTreasury.TotalStaked + amount,
-            LastCompoundTime = DateTime.UtcNow
-        };
+        _energyTreasury.TotalStaked += amount;
+        _energyTreasury.LastCompoundTime = DateTime.UtcNow;
 
         _logger.LogInformation("Staked {Amount} EGoin for address {Address}", amount, address);
         return Task.FromResult(true);

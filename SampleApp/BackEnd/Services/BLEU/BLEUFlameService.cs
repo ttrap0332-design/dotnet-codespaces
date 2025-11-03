@@ -24,6 +24,8 @@ public class BLEUFlameService
     public Task<ENFTMetadata> MintENFT(ENFTTier tier, string owner, ENFTAttributes attributes)
     {
         var tokenId = $"BLEU-{_nftRegistry.Count + 1:D6}";
+        // NOTE: In production, this should be a real IPFS CID after uploading metadata to IPFS
+        // This is a simulated CID for demonstration purposes only
         var ipfsHash = $"Qm{Guid.NewGuid().ToString("N")}{Guid.NewGuid().ToString("N")[..12]}"; // Simulated IPFS hash
 
         var metadata = new ENFTMetadata

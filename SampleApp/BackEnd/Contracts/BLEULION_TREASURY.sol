@@ -19,6 +19,7 @@ contract BLEULION_TREASURY {
     uint256 public constant GOD_TIER_BPS = 1000;         // 10%
     
     // π⁴ constant for yield calculations (scaled by 1e18)
+    // π⁴ = π * π * π * π ≈ 97.409091034
     uint256 public constant PI_FOURTH = 97409091034000000000; // 97.409091034 * 1e18
     
     // Revenue tracking by tier
@@ -100,6 +101,7 @@ contract BLEULION_TREASURY {
         else tierMultiplier = 5e18;                            // 5.0
         
         // Calculate yield: (temp * memIndex * tierMultiplier) / π⁴
+        // Note: All values are scaled by 1e18, so we divide by PI_FOURTH
         uint256 calculatedYield = (temperature * memoryIndex * tierMultiplier) / PI_FOURTH;
         
         // Store vault event

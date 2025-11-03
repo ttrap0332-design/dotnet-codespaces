@@ -59,11 +59,12 @@ public class YieldCalculator
 
 /// <summary>
 /// Energy Treasury configuration for EGoin staking
+/// Note: Using a class instead of record for mutable state management
 /// </summary>
-public record EnergyTreasury
+public class EnergyTreasury
 {
-    public decimal TotalStaked { get; init; }
-    public double CompoundRate { get; init; } = 97.409091034; // π⁴ rate
-    public DateTime LastCompoundTime { get; init; }
-    public Dictionary<string, decimal> StakerBalances { get; init; } = new();
+    public decimal TotalStaked { get; set; }
+    public double CompoundRate { get; set; } = 97.409091034; // π⁴ rate
+    public DateTime LastCompoundTime { get; set; }
+    public Dictionary<string, decimal> StakerBalances { get; set; } = new();
 }
