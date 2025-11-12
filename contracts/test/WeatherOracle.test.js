@@ -1,7 +1,6 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import { anyValue } from "@nomicfoundation/hardhat-chai-matchers";
-import { anyValue } from "@nomicfoundation/hardhat-chai-matchers";
 
 describe("WeatherOracle", function () {
   let WeatherOracle, weatherOracle, owner, dataProvider, addr1;

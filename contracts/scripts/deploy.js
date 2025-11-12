@@ -55,7 +55,7 @@ async function main() {
     const location = locations[i];
     const tokenURI = `https://api.weathernft.com/metadata/${location.name.toLowerCase().replace(' ', '-')}`;
     
-    const tx = await weatherNFT.mintWeatherNFT(
+    await weatherNFT.mintWeatherNFT(
       deployer.address,
       location.name,
       location.temp,

@@ -199,5 +199,3 @@ describe("WeatherNFT", function () {
     });
   });
 });
-  });
-});
